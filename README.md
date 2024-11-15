@@ -52,11 +52,11 @@ The application will open in your default browser at `http://localhost:3000`
 note-taking-app/
 ├── src/
 │   ├── components/
-│   │   ├── DirectoryPicker.js
-│   │   ├── NoteEditor.js
+│   │   ├── Toast.jsx
+│   │   ├── Tooltip.jsx
 │   │   └── ...
-│   ├── App.js
-│   └── index.js
+│   ├── App.jsx
+│   └── main.jsx
 ├── public/
 └── package.json
 ```
@@ -83,4 +83,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Your Name - [pratap.5dec@gmail.com]
 Project Link: [https://github.com/AbhishekPratap05/note-taking-app]
-
