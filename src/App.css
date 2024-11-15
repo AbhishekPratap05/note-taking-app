@@ -1,0 +1,1123 @@
+.app-container {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.sidebar {
+  height: 100%;
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.sidebar-header button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.notes-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.note-item {
+  padding: 6px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s ease;
+}
+
+.note-item.selected {
+  background-color: rgba(33, 150, 243, 0.1);
+}
+
+.note-item button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #666;
+}
+
+.note-item button:hover {
+  color: var(--hover-color);
+}
+
+.resize-handle {
+  width: 4px;
+  background-color: var(--border-color);
+  transition: background-color 0.2s ease;
+}
+
+.resize-handle:hover {
+  background-color: var(--hover-color);
+}
+
+.resize-handle[data-resize-handle-active] {
+  background-color: #2196f3;
+  width: 4px;
+}
+
+.editor-container {
+  height: 100%;
+  padding: 1rem;
+  background-color: var(--bg-color);
+}
+
+.editor-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background-color: var(--toolbar-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.editor-toolbar button {
+  margin-right: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--button-bg);
+  cursor: pointer;
+  color: var(--button-text);
+}
+
+.editor-toolbar button.is-active {
+  background-color: #e3f2fd;
+  border-color: #2196f3;
+}
+
+.editor-content {
+  flex: 1;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 1rem;
+  background-color: var(--bg-color);
+  overflow-y: auto;
+  color: var(--text-color);
+}
+
+.ProseMirror {
+  height: 100%;
+  outline: none;
+}
+
+.ProseMirror p {
+  margin: 0.5rem 0;
+}
+
+.dark-mode {
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;
+  --sidebar-bg: #2d2d2d;
+  --item-bg: #3d3d3d;
+  --border-color: #404040;
+  --hover-color: #4a4a4a;
+  --selected-bg: #4a4a4a;
+  --toolbar-bg: #2d2d2d;
+  --button-bg: #3d3d3d;
+  --button-text: #ffffff;
+}
+
+.light-mode {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --sidebar-bg: #f5f5f5;
+  --item-bg: #ffffff;
+  --border-color: #ddd;
+  --hover-color: #f0f0f0;
+  --selected-bg: #e3f2fd;
+  --toolbar-bg: #f8f9fa;
+  --button-bg: #ffffff;
+  --button-text: #000000;
+}
+
+.formatting-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.theme-toggle {
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+}
+
+.export-button {
+  padding: 0.5rem 1rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.export-button:hover {
+  background-color: #218838;
+}
+
+/* Make sure the editor content is visible in dark mode */
+.dark-mode .ProseMirror {
+  color: var(--text-color);
+}
+
+.directory-button {
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+/* Override MD Editor styles for dark mode */
+.dark-mode .w-md-editor {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.dark-mode .w-md-editor-text {
+  color: var(--text-color);
+}
+
+/* Toast customization */
+.Toaster {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.Toaster__toast {
+  border-radius: 8px;
+  padding: 12px 20px;
+}
+
+.Toaster__toast--success {
+  background-color: #28a745;
+  color: white;
+}
+
+.Toaster__toast--error {
+  background-color: #dc3545;
+  color: white;
+}
+
+.save-button {
+  padding: 6px 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.save-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.save-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.unsaved-indicator {
+  color: #dc3545;
+  font-size: 12px;
+}
+
+.auto-save-status {
+  color: var(--text-color);
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.auto-save-toggle {
+  padding: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  opacity: 0.5;
+}
+
+.auto-save-toggle.active {
+  opacity: 1;
+}
+
+/* Tooltip styles */
+[title] {
+  position: relative;
+}
+
+[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 1000;
+}
+
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.icon-button:hover {
+  background-color: var(--hover-color);
+}
+
+.icon-button.active {
+  color: #2196f3;
+}
+
+.icon-button.delete:hover {
+  color: #dc3545;
+}
+
+.new-note-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.new-note-button:hover {
+  background-color: #1976d2;
+}
+
+.note-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+
+.unsaved-dot {
+  color: #ff4444;
+  font-size: 8px;
+  margin-left: 4px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+.note-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.note-item:hover .note-actions {
+  /* Remove opacity: 1 */
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  cursor: pointer;
+  color: var(--text-color);
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.action-button.edit {
+  color: #2196f3;
+}
+
+.action-button.edit:hover {
+  background-color: rgba(33, 150, 243, 0.1);
+  opacity: 1;
+}
+
+.action-button.delete {
+  color: #ff4444;
+}
+
+.action-button.delete:hover {
+  background-color: rgba(255, 68, 68, 0.1);
+  opacity: 1;
+}
+
+.save-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.save-button:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.save-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.save-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.auto-save-status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+.unsaved-indicator {
+  color: #dc3545;
+  font-size: 12px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+/* Add these new styles */
+.sidebar-settings {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.setting-item label {
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+/* Toggle Switch */
+.toggle-switch {
+  position: relative;
+  width: 120px;
+  height: 28px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-switch label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+.toggle-switch label:before {
+  content: '';
+  position: absolute;
+  width: 58px;
+  height: 24px;
+  left: 2px;
+  bottom: 1px;
+  background-color: #2196f3;
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+}
+
+.toggle-switch input:checked + label:before {
+  transform: translateX(58px);
+}
+
+.toggle-label {
+  color: var(--text-color);
+  font-size: 12px;
+  z-index: 1;
+  padding: 0 8px;
+}
+
+/* Directory Button */
+.directory-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.directory-button:hover {
+  background-color: var(--hover-color);
+}
+
+/* New Note Button */
+.new-note-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.new-note-button:hover {
+  background-color: #1976d2;
+}
+
+/* Note Actions */
+.action-button {
+  padding: 6px;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  color: var(--text-color);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.action-button:hover {
+  opacity: 1;
+  background-color: var(--hover-color);
+}
+
+.action-button.delete:hover {
+  color: #dc3545;
+}
+
+/* Save Status */
+.save-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.unsaved-indicator {
+  color: #dc3545;
+}
+
+.auto-save-status {
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+/* Save Button */
+.save-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.save-button:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.save-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.folder-button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.folder-button:hover {
+  opacity: 1;
+  background-color: var(--hover-color);
+}
+
+.toggles-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.toggle-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toggle-group label {
+  font-size: 13px;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+/* Smaller toggle switch */
+.toggle-switch.small {
+  width: 90px;
+  height: 24px;
+}
+
+.toggle-switch.small label:before {
+  width: 43px;
+  height: 20px;
+}
+
+.toggle-switch.small input:checked + label:before {
+  transform: translateX(44px);
+}
+
+.toggle-switch.small .toggle-label {
+  font-size: 11px;
+}
+
+/* Floating save button */
+.floating-save-container {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1000;
+}
+
+.floating-save-wrapper {
+  position: relative;
+}
+
+.floating-save-button {
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+/* Custom tooltip for save button */
+.floating-save-button::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 6px 12px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.floating-save-button:hover::before {
+  opacity: 1;
+}
+
+.floating-save-button:hover {
+  background-color: #1976d2;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.floating-save-button:active {
+  transform: translateY(0);
+}
+
+.save-status {
+  padding: 8px 16px;
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+/* Dialog styles */
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.dialog {
+  background-color: var(--bg-color);
+  border-radius: 8px;
+  padding: 24px;
+  width: 400px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.dialog-header h3 {
+  margin: 0;
+  color: var(--text-color);
+}
+
+.warning-icon {
+  color: #ff9800;
+}
+
+.dialog p {
+  color: var(--text-color);
+  margin-bottom: 24px;
+}
+
+.dialog-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.dialog-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.dialog-button.primary {
+  background-color: #2196f3;
+  color: white;
+}
+
+.dialog-button.primary:hover {
+  background-color: #1976d2;
+}
+
+.dialog-button.secondary {
+  background-color: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.dialog-button.secondary:hover {
+  background-color: var(--hover-color);
+}
+
+.note-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+
+.note-title span {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Add styles for title input */
+.title-input {
+  width: 100%;
+  padding: 4px 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.title-input:focus {
+  border-color: #2196f3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}
+
+/* Update note title styles */
+.note-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 44px;
+  padding: 4px 0;
+}
+
+.note-title span {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Notes header and sorting styles */
+.notes-header {
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sort-container {
+  position: relative;
+}
+
+.sort-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--text-color);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.sort-button:hover {
+  background-color: var(--hover-color);
+}
+
+.chevron {
+  margin-left: auto;
+  transition: transform 0.2s ease;
+}
+
+.chevron.open {
+  transform: rotate(180deg);
+}
+
+.sort-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.sort-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  width: 100%;
+  border: none;
+  background: none;
+  color: var(--text-color);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.sort-option:hover {
+  background-color: var(--hover-color);
+}
+
+.sort-option.active {
+  background-color: rgba(33, 150, 243, 0.1);
+  color: #2196f3;
+}
+
+/* Update notes list to accommodate the header */
+.notes-list {
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 4px;
+}
+
+.note-timestamp {
+  font-size: 11px;
+  color: var(--text-color);
+  opacity: 0.7;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Add style for the timestamp label */
+.note-timestamp::first-letter {
+  opacity: 0.6;
+}
+
+/* Update note info spacing */
+.note-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 2px 0;
+}
+
+/* Ensure proper spacing in note items */
+.note-item {
+  padding: 6px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s ease;
+}
+
+.note-item:hover {
+  background-color: var(--hover-color);
+}
+
+.note-item.selected {
+  background-color: rgba(33, 150, 243, 0.1);
+}
+
+/* Update unsaved dot */
+.unsaved-dot {
+  color: #ff4444;
+  font-size: 8px;
+  margin-left: 4px;
+  animation: pulse 2s infinite;
+}
+
+/* Update sort button styles */
+.sort-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--border-color);
+}
+
+.sort-button.disabled:hover {
+  background-color: var(--border-color);
+}
+
+.sort-button.disabled .chevron {
+  opacity: 0.5;
+}
+
+/* Add no folder message styles */
+.no-folder-message {
+  padding: 16px;
+  text-align: center;
+  color: var(--text-color);
+  opacity: 0.7;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Update new note button */
+.new-note-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--border-color);
+}
+
+.new-note-button:disabled:hover {
+  background-color: var(--border-color);
+}
+
+/* Update sort container */
+.sort-container {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.sort-container:has(.sort-button:disabled) {
+  opacity: 0.7;
+}
+
+/* Update notes header */
+.notes-header {
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+}
+
+/* Improve sort button appearance */
+.sort-button {
+  justify-content: flex-start;
+  font-size: 13px;
+}
+
+.sort-button svg:first-child {
+  width: 16px;
+  height: 16px;
+}
+
+/* Update chevron icon */
+.chevron {
+  margin-left: auto;
+  width: 14px;
+  height: 14px;
+}
+
+.note-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.note-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Remove any old tooltip styles and keep only these */
+.tooltip-container {
+  display: inline-flex;
+  position: relative;
+}
+
+.tooltip {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1000;
+  pointer-events: none;
+}
