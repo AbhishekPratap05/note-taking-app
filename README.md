@@ -81,22 +81,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-Your Name - [your-email@example.com]
-Project Link: [https://github.com/yourusername/note-taking-app]
+Your Name - [pratap.5dec@gmail.com]
+Project Link: [https://github.com/AbhishekPratap05/note-taking-app]
 
-## Acknowledgments
-
-* List any resources, libraries, or tools that you used or were inspired by
-* Credit any collaborators or contributors
-```
-
-Feel free to customize this README template by:
-1. Adding your specific project details
-2. Updating the installation instructions if they differ
-3. Adding any additional sections that might be relevant to your project
-4. Removing sections that don't apply
-5. Adding screenshots or GIFs to demonstrate the app's functionality
-6. Including any specific configuration instructions
-7. Adding troubleshooting guides if necessary
-
-Remember to replace placeholder text (like [your-repository-url], [your-email@example.com], etc.) with your actual project information.
