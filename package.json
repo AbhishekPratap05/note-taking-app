@@ -10,9 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tiptap/pm": "^2.9.1",
-    "@tiptap/react": "^2.9.1",
-    "@tiptap/starter-kit": "^2.9.1",
     "@uiw/react-md-editor": "^4.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
