@@ -46,6 +46,15 @@ The application will open in your default browser at `http://localhost:3000`
 4. Save your note using the save button
 5. Your note will be saved as a .md file in the selected directory
 
+## Screenshots
+### Note Taking App in Dark Mode
+![Note Taking App in Dark Mode](./src/assets/note-taking-app1.png)
+![Note Taking App in Dark Mode](./src/assets/note-taking-app2.png)
+
+### Note Taking App in Light Mode
+![Note Taking App in Light Mode](./src/assets/note-taking-app3.png)
+
+
 ## Project Structure
 
 ```
@@ -64,8 +73,8 @@ note-taking-app/
 ## Technologies Used
 
 - React.js
-- Electron
-- [Other libraries/frameworks used in your project]
+- Node.js
+- MDEditor
 
 ## Contributing
 
