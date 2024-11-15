@@ -2,6 +2,10 @@
 
 A simple note-taking application that creates and manages markdown files in your selected directory.
 
+NOTE: This project is still in development and may not be fully functional and may have bugs.
+```
+THIS WAS CREATED BY AI, ALL I DID WAS TO GIVE INSTRUCTIONS AND SOLVE FEW ISSUES.
+```
 ## Features
 
 - Create and save notes in Markdown format
