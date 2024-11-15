@@ -155,30 +155,38 @@ function App() {
   };
 
   const saveNote = async (noteId, content) => {
-    if (!directoryHandle) return;
-
     try {
-      const note = notes.find(n => n.id === noteId);
-      if (!note) return;
+      const noteToSave = notes.find((note) => note.id === noteId);
+      if (!noteToSave) {
+        throw new Error('Note not found');
+      }
 
-      const fileHandle = await directoryHandle.getFileHandle(`${note.title}.md`, { create: true });
+      // Create updated note object with current content
+      const updatedNote = {
+        ...noteToSave,
+        content: content || currentContent, // Use provided content or current content
+        lastModified: Date.now()
+      };
+
+      // Save directly to the file system using the File System Access API
+      const fileHandle = await directoryHandle.getFileHandle(
+        `${updatedNote.title}.md`,
+        { create: true }
+      );
       const writable = await fileHandle.createWritable();
-      await writable.write(content);
+      await writable.write(updatedNote.content);
       await writable.close();
 
-      const updatedNotes = notes.map(n => {
-        if (n.id === noteId) {
-          return {
-            ...n,
-            content,
-            updatedAt: Date.now()
-          };
-        }
-        return n;
-      });
-      setNotes(updatedNotes);
+      // Update the notes array with the new content
+      setNotes((prevNotes) =>
+        prevNotes.map((note) =>
+          note.id === updatedNote.id ? updatedNote : note
+        )
+      );
+
+      // Show success message using toast
+      toast.success('Note saved successfully!');
       setHasUnsavedChanges(false);
-      toast.success('Note saved');
     } catch (error) {
       console.error('Error saving note:', error);
       toast.error('Failed to save note');
@@ -190,12 +198,15 @@ function App() {
 
     const newNote = {
       id: Date.now().toString(),
-      title: "Untitled Note",
-      content: "# Untitled Note\n\nStart writing here..."
+      title: 'Untitled Note',
+      content: '# Untitled Note\n\nStart writing here...'
     };
 
     try {
-      const fileHandle = await directoryHandle.getFileHandle(`${newNote.title}.md`, { create: true });
+      const fileHandle = await directoryHandle.getFileHandle(
+        `${newNote.title}.md`,
+        { create: true }
+      );
       const writable = await fileHandle.createWritable();
       await writable.write(newNote.content);
       await writable.close();
@@ -214,10 +225,10 @@ function App() {
     if (!directoryHandle) return;
 
     try {
-      const note = notes.find(n => n.id === noteId);
+      const note = notes.find((n) => n.id === noteId);
       await directoryHandle.removeEntry(`${note.title}.md`);
 
-      const newNotes = notes.filter(note => note.id !== noteId);
+      const newNotes = notes.filter((note) => note.id !== noteId);
       setNotes(newNotes);
       if (selectedNote === noteId) {
         setSelectedNote(newNotes[0]?.id);
@@ -237,7 +248,7 @@ function App() {
   };
 
   const handleTitleEdit = (e) => {
-    setEditingTitle(prev => ({
+    setEditingTitle((prev) => ({
       ...prev,
       tempTitle: e.target.value
     }));
@@ -250,7 +261,7 @@ function App() {
     }
 
     try {
-      const oldNote = notes.find(n => n.id === editingTitle.id);
+      const oldNote = notes.find((n) => n.id === editingTitle.id);
       if (!oldNote) return;
 
       // Check if a file with new name already exists
@@ -268,16 +279,20 @@ function App() {
       }
 
       // Delete old file
-      const oldFileHandle = await directoryHandle.getFileHandle(`${oldNote.title}.md`);
+      const oldFileHandle = await directoryHandle.getFileHandle(
+        `${oldNote.title}.md`
+      );
       await oldFileHandle.remove();
 
       // Create new file with new title
-      const fileHandle = await directoryHandle.getFileHandle(newFileName, { create: true });
+      const fileHandle = await directoryHandle.getFileHandle(newFileName, {
+        create: true
+      });
       const writable = await fileHandle.createWritable();
       await writable.write(oldNote.content);
       await writable.close();
 
-      const updatedNotes = notes.map(note => {
+      const updatedNotes = notes.map((note) => {
         if (note.id === editingTitle.id) {
           return {
             ...note,
@@ -288,7 +303,7 @@ function App() {
         return note;
       });
       setNotes(updatedNotes);
-      setEditingTitle({ id: null, tempTitle: "" });
+      setEditingTitle({ id: null, tempTitle: '' });
       toast.success('Note renamed');
     } catch (error) {
       console.error('Error updating note title:', error);
@@ -298,12 +313,12 @@ function App() {
   };
 
   const cancelTitleEdit = () => {
-    setEditingTitle({ id: null, tempTitle: "" });
+    setEditingTitle({ id: null, tempTitle: '' });
   };
 
   // Save autoSave preference
   useEffect(() => {
-    localStorage.setItem("autoSave", isAutoSave);
+    localStorage.setItem('autoSave', isAutoSave);
   }, [isAutoSave]);
 
   // Handle auto-save
@@ -316,11 +331,7 @@ function App() {
 
       // Set new timer
       autoSaveTimerRef.current = setTimeout(() => {
-        const note = notes.find(n => n.id === selectedNote);
-        if (note) {
-          saveNote(selectedNote, note.content);
-          setHasUnsavedChanges(false);
-        }
+        saveNote(selectedNote, currentContent);
       }, 10000); // 10 seconds
     }
 
@@ -329,23 +340,20 @@ function App() {
         clearTimeout(autoSaveTimerRef.current);
       }
     };
-  }, [isAutoSave, hasUnsavedChanges, notes, selectedNote]);
+  }, [isAutoSave, hasUnsavedChanges, selectedNote, currentContent]);
 
   // Add save shortcut (Ctrl/Cmd + S)
   useEffect(() => {
     const handleKeyDown = (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 's' && selectedNote) {
         e.preventDefault();
-        const note = notes.find(n => n.id === selectedNote);
-        if (note) {
-          saveNote(selectedNote, note.content);
-        }
+        saveNote(selectedNote, currentContent);
       }
     };
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [selectedNote, notes]);
+  }, [selectedNote, currentContent]);
 
   const handleNoteChange = (noteId) => {
     if (hasUnsavedChanges) {
